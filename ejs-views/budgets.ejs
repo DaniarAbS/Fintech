@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="budgets.css" />
+    <title>Budgets</title>
+  </head>
+  <body>
+    <div class="div">
+      <div class="div-2">
+        <div class="div-3">
+          <div class="div-4">
+              <a href="../views/main_page.html" class="div-5">Главная</a>
+              <a href="../views/credits.html" class="div-5">Кредиты</a>
+              <a style="border-bottom: 2px solid #27ae60;" href="../views/budget.html" class="div-5">Бюджет</a>
+              <a href="" class="div-5">Платежи</a>
+              <a href="" class="div-5">Виртуальный помощник</a>
+          </div>
+      </div>
+        <div class="div-11">
+          Посчитайте стоимость обучения вместе с льготами:
+        </div>
+        <div class="div-12">
+          <div class="div-13">Введите стоимость вашего обучения за год:</div>
+          <div class="div-14">
+            <input id="cost" type="text" placeholder="Стоимость" />
+          </div>
+        </div>
+        <div class="div-15">
+          <div class="div-16">Ваше социальное положение:</div>
+          <div class="div-17">
+            <div id="state" class="div-18">
+              <select id="stateDropdown" onchange="updateSales()">
+                <option value="change1">Полноценная семья</option>
+                <option value="change2">Инвалид</option>
+                <option value="change3">Неполноценная семья</option>
+                <option value="change4">Сирота</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="div-19">
+          <div class="div-20">
+            Стоимость учебы за год с
+            <br />
+            учетом льготной скидки:
+          </div>
+          <p id="sales">0 KZT</p>
+          <div class="div-21"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="left_side_container">
+            <h1>Мы в соц. сетях:</h1>
+            <div class="img_and_texts">
+                <div class="telegram">
+                    <img src="../views/images/telegram (1) 1.png" alt="">
+                    <a href=""><p>bcc.kz</p></a>
+                </div>
+                <div class="instagram">
+                    <img src="../views/images/instagram (6) 1.png" alt="">
+                    <a href=""><p>bcc.kz</p></a>
+                </div>
+                <div class="virtual_helper_footer">
+                    <img src="../views/images/speech-bubble 1.png" alt="">
+                    <a href=""><p>Виртуальный помощник</p></a>
+                </div>
+            </div>
+        </div>
+        <div class="right_side_container">
+            <div class="first_column_footer">
+                <a href=""><p>Контакты</p></a>
+                <a href=""><p>Профиль</p></a>
+                <a href=""><p>Кредиты</p></a>
+            </div>
+            <div class="second_column_footer">
+                <a href=""><p>Долги</p></a>
+                <a href=""><p>Бюджеты</p></a>
+                <a href=""><p>Платежи</p></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+      const path = require("path");
+
+      const createPath = (page) =>
+        path.resolve(__dirname, "ejs-views", `${page}.ejs`);
+
+      function updateSales() {
+        var dropdown = document.getElementById("stateDropdown");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        var salesElement = document.getElementById("sales");
+        if (selectedValue === "change1") {
+          salesElement.textContent = "Value for Change 1";
+        } else if (selectedValue === "change2") {
+          salesElement.textContent = "Value for Change 2";
+        } else if (selectedValue === "change3") {
+          salesElement.textContent = "Value for Change 3";
+        }
+      }
+
+      function updateSales() {
+        var dropdown = document.getElementById("stateDropdown");
+        var selectedValue = dropdown.options[dropdown.selectedIndex].value;
+        var salesElement = document.getElementById("sales");
+        var costElement = document.getElementById("cost");
+
+        if (selectedValue === "change1") {
+          var cost = parseFloat(costElement.value);
+          if (!isNaN(cost)) {
+            var discountedValue = cost;
+            salesElement.textContent = `${discountedValue.toFixed(2)} KZT`;
+          } else {
+            salesElement.textContent = "Please enter a valid cost";
+          }
+        } else if (selectedValue === "change2") {
+          var cost = parseFloat(costElement.value);
+          if (!isNaN(cost)) {
+            var discountedValue = cost - cost * 0.15;
+            salesElement.textContent = `${discountedValue.toFixed(2)} KZT`;
+          } else {
+            salesElement.textContent = "Please enter a valid cost";
+          }
+        } else if (selectedValue === "change3") {
+          var cost = parseFloat(costElement.value);
+          if (!isNaN(cost)) {
+            var discountedValue = cost - cost * 0.2;
+            salesElement.textContent = `${discountedValue.toFixed(2)} KZT`;
+          } else {
+            salesElement.textContent = "Please enter a valid cost";
+          }
+        } else if (selectedValue === "change4") {
+          var cost = parseFloat(costElement.value);
+          if (!isNaN(cost)) {
+            var discountedValue = cost - cost * 0.25;
+            salesElement.textContent = `${discountedValue.toFixed(2)} KZT`;
+          } else {
+            salesElement.textContent = "Please enter a valid cost";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
